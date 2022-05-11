@@ -1,0 +1,52 @@
+{
+  "inputs": {
+    "t1": {
+      "display": "T1",
+      "type": "image",
+      "required": true,
+      "subtype": "nifti",
+      "description": "The T1 Image"
+    },
+    "t1c": {
+      "display": "T1C",
+      "type": "image",
+      "required": true,
+      "subtype": "nifti",
+      "description": "The T1 Contrast Image"
+    },
+    "t2": {
+      "display": "T2",
+      "type": "image",
+      "required": true,
+      "subtype": "nifti",
+      "description": "The T2 Image"
+    },
+    "fla": {
+      "display": "Flair",
+      "type": "image",
+      "required": true,
+      "subtype": "nifti",
+      "description": "The Flair Image"
+    },
+    "outputDir": {
+      "display": "Output Directory",
+      "type": "folder",
+      "required": true,
+      "description": "The Directory to store the output data"
+    }
+  },
+  "kwargs": {
+    "workers": 0,
+    "tta": true,
+    "inference_batches": 20
+  },
+  "outputs": {
+    "segmentation": {
+      "type": "image",
+      "subtype": "nifti"
+    }
+  },
+  "callback": "main",
+  "module": ".",
+  "python": ""
+}

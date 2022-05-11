@@ -1,0 +1,31 @@
+{
+  "inputs": {
+    "input_file": {
+      "display": "Raw Input",
+      "type": "image",
+      "required": true,
+      "subtype": "nifti",
+      "description": "The raw input to be converted"
+    },
+    "iso_value": {
+      "type": "scalar",
+      "subtype": "float",
+      "default": 1
+    },
+    "outputDir": {
+      "display": "Output Directory",
+      "type": "folder",
+      "required": true,
+      "description": "The Directory to store the output data"
+    }
+  },
+  "kwargs": {},
+  "outputs": {
+    "mesh": {
+      "type": "mesh",
+      "subtype": "vtk"
+    }
+  },
+  "callback": "main",
+  "module": "."
+}

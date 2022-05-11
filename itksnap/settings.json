@@ -1,0 +1,29 @@
+{
+  "inputs": {
+    "raw_input": {
+      "display": "Raw Input",
+      "type": "image",
+      "subtype": "nifti",
+      "description": "The raw input to be segmented"
+    },
+    "seg_input": {
+      "display": "Segmentation",
+      "type": "image",
+      "subtype": "nifti",
+      "description": "The segmentation label"
+    }
+  },
+  "kwargs": {},
+  "commands": [{
+      "command": ["<BASE_DIR>/bin/itksnap", "-g", "$i:raw_input", "-s", "$i:seg_input"],
+      "requires": ["raw_input", "seg_input"]
+    },
+    {
+      "command": ["<BASE_DIR>/bin/itksnap", "-g", "$i:raw_input"],
+      "requires": ["raw_input"]
+    },
+    {
+      "command": ["<BASE_DIR>/bin/itksnap"]
+    }
+  ]
+}

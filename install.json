@@ -1,0 +1,54 @@
+{
+  "plugins": {
+    "brat_preprocessor": {
+      "path": "brat_preprocessor",
+      "environment": "brat",
+      "display": "BRAT Preprocessor",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },
+    "brat_segmentation": {
+      "path": "brat_segmentation",
+      "environment": "brat",
+      "display": "BRAT Segmentation",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },
+    "volume2mesh": {
+      "path": "volume2mesh",
+      "environment": "v2m",
+      "display": "Volume 2 Mesh",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },
+    "itksnap": {
+      "path": "itksnap",
+      "display": "ITK Snap",
+      "viewer": true,
+      "type": "executable",
+      "group": null
+    },
+    "gmsh": {
+      "path": "gmsh",
+      "display": "Mesh Viewer",
+      "viewer": true,
+      "type": "executable",
+      "group": null
+    }
+  },
+  "environments": {
+    "brat": {
+      "python_version": "3.8",
+      "requirements": ["./brat_preprocessor/requirements.txt", "./brat_segmentation/requirements.txt"],
+      "description": ""
+    },
+    "v2m": {
+      "python_version": "3.8",
+      "requirements": ["./volume2mesh/requirements.txt"],
+      "description": ""
+    }
+  }
+}
