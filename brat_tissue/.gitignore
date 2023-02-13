@@ -1,0 +1,8 @@
+.idea
+venv
+__pycache__
+*gz
+module/*.pyc
+module/lib/ants/build
+module/lib/ants/install
+module/lib/ants/ANTs

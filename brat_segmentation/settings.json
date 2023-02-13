@@ -48,5 +48,5 @@
   },
   "callback": "main",
   "module": ".",
-  "python": ""
+  "python": "/home/giles/.pyenv/versions/brat/bin/python"
 }

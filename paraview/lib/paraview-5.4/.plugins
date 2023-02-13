@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Plugins>
+  <Plugin name="AcceleratedAlgorithms" auto_load="0" />
+  <Plugin name="AnalyzeNIfTIIO" auto_load="0" />
+  <Plugin name="ArrowGlyph" auto_load="0" />
+  <Plugin name="CDIReader" auto_load="0" />
+  <Plugin name="CatalystScriptGeneratorPlugin" auto_load="0" />
+  <Plugin name="EyeDomeLightingView" auto_load="0" />
+  <Plugin name="GMVReader" auto_load="0" />
+  <Plugin name="GeodesicMeasurement" auto_load="0" />
+  <Plugin name="LagrangianParticleTracker" auto_load="0" />
+  <Plugin name="Moments" auto_load="0" />
+  <Plugin name="NonOrthogonalSource" auto_load="0" />
+  <Plugin name="SLACTools" auto_load="0" />
+  <Plugin name="SierraPlotTools" auto_load="0" />
+  <Plugin name="StreamLinesRepresentation" auto_load="0" />
+  <Plugin name="StreamingParticles" auto_load="0" />
+  <Plugin name="SurfaceLIC" auto_load="0" />
+  <Plugin name="PacMan" auto_load="0" />
+  <Plugin name="ThickenLayeredCells" auto_load="0" />
+  <Plugin name="VRPlugin" auto_load="0" />
+  <Plugin name="BDATReader" auto_load="0" />
+  <Plugin name="BDATSeriesReader" auto_load="0" />
+  <Plugin name="GLGPUVortexFilter" auto_load="0" />
+  <Plugin name="GLGPUSupercurrentFilter" auto_load="0" />
+</Plugins>

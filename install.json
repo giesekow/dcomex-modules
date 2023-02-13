@@ -8,6 +8,14 @@
       "type": "python",
       "group": null
     },
+    "brat_tissue": {
+      "path": "brat_tissue",
+      "environment": "brat",
+      "display": "BRAT Tissue Extractor",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },
     "brat_segmentation": {
       "path": "brat_segmentation",
       "environment": "brat",
@@ -31,6 +39,13 @@
       "type": "executable",
       "group": null
     },
+    "paraview": {
+      "path": "paraview",
+      "display": "Paraview",
+      "viewer": true,
+      "type": "executable",
+      "group": null
+    },
     "gmsh": {
       "path": "gmsh",
       "display": "Mesh Viewer",
@@ -42,7 +57,7 @@
   "environments": {
     "brat": {
       "python_version": "3.8",
-      "requirements": ["./brat_preprocessor/requirements.txt", "./brat_segmentation/requirements.txt"],
+      "requirements": ["./brat_preprocessor/requirements.txt", "./brat_segmentation/requirements.txt", "./brat_tissue/requirements.txt"],
       "description": ""
     },
     "v2m": {

@@ -1,0 +1,19 @@
+{
+  "inputs": {
+    "raw_input": {
+      "display": "VTK Image",
+      "type": "mesh",
+      "subtype": "vtk",
+      "description": "The mesh image to view"
+    }
+  },
+  "kwargs": {},
+  "commands": [{
+      "command": ["<BASE_DIR>/bin/paraview", "--data=${raw_input}"],
+      "requires": ["raw_input"]
+    },
+    {
+      "command": ["<BASE_DIR>/bin/paraview"]
+    }
+  ]
+}

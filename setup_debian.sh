@@ -10,3 +10,13 @@ echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 source ~/.bashrc
+
+cwd=$(pwd)
+
+script_dir=$(dirname "$0")
+
+cd "$script_dir/brat_tissue/module/lib/ants"
+
+bash install.sh
+
+cd $cwd

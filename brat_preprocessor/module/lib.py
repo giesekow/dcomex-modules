@@ -17,11 +17,11 @@ def niftyreg_caller(
     """calls niftyreg for registration and transforms"""
 
     the_shell = "/bin/bash"
-
+    script_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),'registration_scripts')
     if mode == "registration":
-        shell_script = "registration_scripts/rigid_reg.sh"
+        shell_script = os.path.join(script_dir, "rigid_reg.sh")
     elif mode == "transformation":
-        shell_script = "registration_scripts/transform.sh"
+        shell_script = os.path.join(script_dir, "transform.sh")
     else:
         raise NotImplementedError("this mode is not implemented:", mode)
 
@@ -81,16 +81,18 @@ def niftyreg_caller(
 def skullstrip(input_image, masked_image, log_file, mode):
     """skullstrips images with HD-BET generates a skullstripped file and mask"""
     the_shell = "/bin/bash"
+    script_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),'skullstripping_scripts')
 
     if mode == "gpu":
-        shell_script = "skullstripping_scripts/hd-bet_gpu.sh"
+        shell_script = os.path.join(script_dir, "hd-bet_gpu.sh")
     elif mode == "cpu":
-        shell_script = "skullstripping_scripts/hd-bet_cpu.sh"
+        shell_script = os.path.join(script_dir, "hd-bet_cpu.sh")
     elif mode == "cpu-fast":
-        shell_script = "skullstripping_scripts/hd-bet_cpu-fast.sh"
+        shell_script = os.path.join(script_dir, "hd-bet_cpu-fast.sh")
     else:
         raise NotImplementedError("this mode is not implemented:", mode)
     # let's try to call it
+    
     try:
         starttime = str(datetime.datetime.now())
         print(
@@ -112,15 +114,20 @@ def skullstrip(input_image, masked_image, log_file, mode):
             masked_image,
         )
         readableCmd = " ".join(readableCmd)
-        print(readableCmd)
         command = shlex.split(readableCmd)
-        print(command)
 
         cwd = pathlib.Path(__file__).resolve().parent
-        print(cwd)
 
         with open(log_file, "w") as outfile:
-            subprocess.run(command, stdout=outfile, stderr=outfile, cwd=cwd)
+            env = os.environ.copy()
+            executable = env.get("PYTHON_EXECUTABLE")
+
+            if not executable is None:
+                py_path = os.path.dirname(os.path.join(executable))
+                print("EXECUATBLE-PATH", py_path, executable)
+                env["PATH"] = f"{py_path}:{env.get('PATH', '')}"
+
+            subprocess.run(command, stdout=outfile, stderr=outfile, cwd=cwd, env=env)
 
         endtime = str(datetime.datetime.now().time())
 

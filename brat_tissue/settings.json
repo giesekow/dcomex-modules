@@ -1,0 +1,39 @@
+{
+  "inputs": {
+    "t1": {
+      "display": "T1",
+      "type": "image",
+      "required": true,
+      "subtype": "nifti",
+      "description": "The T1 Image"
+    },
+    "threshold": {
+      "display": "Threshold",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "The threshold for converting probs to bins"
+    },
+    "outputDir": {
+      "display": "Output Directory",
+      "type": "folder",
+      "required": true,
+      "description": "The Directory to store the output data"
+    }
+  },
+  "kwargs": {},
+  "outputs": {
+    "classes": {
+      "type": "image",
+      "subtype": "nifti"
+    },
+    "probs": {
+      "type": "image",
+      "subtype": "nifti",
+      "ismultiple": true
+    }
+  },
+  "callback": "main",
+  "module": ".",
+  "python": "/home/giles/.pyenv/versions/brat/bin/python"
+}
