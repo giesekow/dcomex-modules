@@ -4,7 +4,7 @@ import nibabel as nib
 import numpy as np
 from nilearn.image import math_img
 
-def main(t1, threshold, outputDir, **kwargs):
+def main(t1, outputDir, threshold=0.5, **kwargs):
   want_tissues = True
   want_atlas = False
   input_path = t1

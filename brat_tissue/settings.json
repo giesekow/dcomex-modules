@@ -10,7 +10,7 @@
     "threshold": {
       "display": "Threshold",
       "type": "scalar",
-      "required": true,
+      "default": 0.5,
       "subtype": "float",
       "description": "The threshold for converting probs to bins"
     },

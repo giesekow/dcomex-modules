@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "raw_input": {
+    "data": {
       "display": "Input Mesh",
       "type": "mesh",
       "description": "The raw input to be segmented"
@@ -9,8 +9,8 @@
   "kwargs": {},
   "class": "viewer",
   "commands": [{
-      "command": ["<BASE_DIR>/bin/gmsh", "$i:raw_input"],
-      "requires": ["raw_input"]
+      "command": ["<BASE_DIR>/bin/gmsh", "$i:data"],
+      "requires": ["data"]
     },
     {
       "command": ["<BASE_DIR>/bin/gmsh"]

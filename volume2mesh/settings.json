@@ -1,19 +1,19 @@
 {
   "inputs": {
-    "input_file": {
+    "mask": {
       "display": "Raw Input",
       "type": "image",
       "required": true,
       "subtype": "nifti",
       "description": "The raw input to be converted"
     },
-    "data_files": {
-      "display": "Data Files",
+    "features": {
+      "display": "Image files containing features",
       "type": "image",
       "required": false,
       "ismultiple": true,
       "subtype": "nifti",
-      "description": "The data file with values for the extracted surface points"
+      "description": "The data files with features for the extracted mesh"
     },
     "zoom_value": {
       "display": "Zoom",

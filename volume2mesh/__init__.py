@@ -7,9 +7,11 @@ import numpy as np
 from scipy.ndimage import zoom
 from scipy import stats
 
-def main(input_file, outputDir, zoom_value=1, r_start=None, r_end=None, data_files=None, **kwargs):
-  mask_file = input_file
+def main(mask, outputDir, zoom_value=1, r_start=None, r_end=None, features=None, **kwargs):
+
+  mask_file = mask
   label_files = {}
+  data_files = features
 
   if not data_files is None:
     for data_file in data_files:
@@ -18,14 +20,14 @@ def main(input_file, outputDir, zoom_value=1, r_start=None, r_end=None, data_fil
 
   # read mask
   mask_img = sitk.ReadImage(mask_file)
-  mask = sitk.GetArrayFromImage(mask_img)
-  mask = np.asarray(mask, dtype="uint8")
+  _mask = sitk.GetArrayFromImage(mask_img)
+  _mask = np.asarray(_mask, dtype="uint8")
 
   if not r_start:
-    mask = np.asarray(mask >= r_start, dtype="uint8")
+    _mask = np.asarray(_mask >= r_start, dtype="uint8")
 
   if not r_end:
-    mask = np.asarray(mask <= r_end, dtype="uint8")
+    _mask = np.asarray(_mask <= r_end, dtype="uint8")
 
   # read labels
   labels = {}
@@ -36,7 +38,7 @@ def main(input_file, outputDir, zoom_value=1, r_start=None, r_end=None, data_fil
 
 
   if zoom_value != 1:
-    mask = zoom(mask, zoom=zoom_value, order=0, mode='nearest')
+    _mask = zoom(_mask, zoom=zoom_value, order=0, mode='nearest')
 
     for k in labels:
       if str(labels[k].dtype).lower().find('int') >= 0:
@@ -46,9 +48,9 @@ def main(input_file, outputDir, zoom_value=1, r_start=None, r_end=None, data_fil
 
   voxel_size = (0.1, 0.1, 0.1)
 
-  mesh = generate_mesh(mask, voxel_size, labels)
+  mesh = generate_mesh(_mask, voxel_size, labels)
   
-  msk_name = str(os.path.basename(input_file)).split(".")[0]
+  msk_name = str(os.path.basename(mask)).split(".")[0]
   msk_path = os.path.join(outputDir, f"{msk_name}.vtk")
   mesh.write(msk_path, file_format='vtk42')
 

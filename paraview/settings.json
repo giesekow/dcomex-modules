@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "raw_input": {
+    "data": {
       "display": "VTK Image",
       "type": "mesh",
       "subtype": "vtk",
@@ -9,8 +9,8 @@
   },
   "kwargs": {},
   "commands": [{
-      "command": ["<BASE_DIR>/bin/paraview", "--data=${raw_input}"],
-      "requires": ["raw_input"]
+      "command": ["<BASE_DIR>/bin/paraview", "--data=${data}"],
+      "requires": ["data"]
     },
     {
       "command": ["<BASE_DIR>/bin/paraview"]
