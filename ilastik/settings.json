@@ -1,0 +1,7 @@
+{
+  "kwargs": {},
+  "commands": [{
+      "command": ["<BASE_DIR>/src/run_ilastik.sh"]
+    }
+  ]
+}

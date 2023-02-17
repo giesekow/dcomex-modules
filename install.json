@@ -52,6 +52,27 @@
       "viewer": true,
       "type": "executable",
       "group": null
+    },
+    "ilastik": {
+      "path": "ilastik",
+      "display": "Ilastik",
+      "viewer": true,
+      "type": "executable",
+      "group": null
+    }
+  },
+  "plugin_groups": {
+    "viewers": {
+      "name": "viewers",
+      "display": "Viewers",
+      "type": "",
+      "submenu": false
+    },
+    "processing": {
+      "name": "processing",
+      "display": "Processing",
+      "type": "",
+      "submenu": false
     }
   },
   "environments": {
