@@ -1,15 +1,51 @@
 {
   "inputs": {
-    "t1": {
-      "display": "Raw Input",
-      "type": "image",
+
+    "Diffusion_param": {
+      "display": "Diffusion parameter",
+      "type": "scalar",
       "required": true,
-      "subtype": "nifti",
-      "description": "The raw input to be converted"
+      "subtype": "float",
+      "description": "Diffusion parameter"
+    },
+
+    "Proliferation_param": {
+      "display": "Proliferation parameter",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Proliferation parameter"
+    },
+
+    "x_coord": {
+      "display": "X coordinate",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "X coordinate"
+    },
+
+    "y_coord": {
+      "display": "Y coordinate",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Y coordinate"
+    },
+
+    "z_coord": {
+      "display": "Z coordinate",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Z coordinate"
     }
+    
+
+    
   },
   "outputs": {
-    "out": {
+    "tumor": {
       "type": "image",
       "subtype": "nifti"
     }
