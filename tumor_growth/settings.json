@@ -39,6 +39,14 @@
       "required": true,
       "subtype": "float",
       "description": "Z coordinate"
+    },
+
+    "uncertainty": {
+      "display": "Include uncertainty? (yes/no)",
+      "type": "scalar",
+      "subtype": "string",
+      "required": true,
+      "description": "Uncertainty of geometry"
     }
     
 

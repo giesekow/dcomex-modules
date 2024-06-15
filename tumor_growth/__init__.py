@@ -9,7 +9,47 @@ import copy
 from scipy.ndimage import zoom
 from solver import Solver_FK_2c 
 
-def main(Diffusion_param, Proliferation_param, x_coord, y_coord, z_coord, **kwargs):
+def update_stats(volume, count, mean, M2):
+    """
+    Update mean and M2 (sum of squares of differences from the mean) for Welford's algorithm.
+    
+    Parameters:
+    volume (numpy.ndarray): The new volume to include in the statistics.
+    count (int): The current count of volumes processed.
+    mean (numpy.ndarray): The current mean of volumes.
+    M2 (numpy.ndarray): The current sum of squares of differences from the mean.
+    
+    Returns:
+    count (int): The updated count.
+    mean (numpy.ndarray): The updated mean.
+    M2 (numpy.ndarray): The updated M2.
+    """
+    count += 1
+    delta = volume - mean
+    mean += delta / count
+    delta2 = volume - mean
+    M2 += delta * delta2
+    return count, mean, M2
+
+def finalize_variance(count, mean, M2):
+    """
+    Finalize the variance computation.
+    
+    Parameters:
+    count (int): The total count of volumes.
+    mean (numpy.ndarray): The final mean of volumes.
+    M2 (numpy.ndarray): The final sum of squares of differences from the mean.
+    
+    Returns:
+    variance (numpy.ndarray): The variance of the volumes.
+    """
+    if count < 2:
+        return np.zeros_like(mean)  # Variance is zero if less than 2 volumes
+    variance = M2 / (count - 1)
+    return variance
+
+
+def main(Diffusion_param, Proliferation_param, x_coord, y_coord, z_coord, uncertainty, **kwargs):
 
     #################################### start here settings ####################################
 	# Create binary segmentation masks
@@ -44,12 +84,53 @@ def main(Diffusion_param, Proliferation_param, x_coord, y_coord, z_coord, **kwar
 
 
 	# Run the FK_solver and plot the results
-	print("llalalalal") 
-	fk_solver = Solver_FK_2c(parameters)
-	result = fk_solver.solve()
+	if uncertainty=="yes":
+		number_of_simulations = 5
+	else:
+		number_of_simulations = 1
+    
+	count = 0
+	mean = None
+	variance = None
+	M2 = None
+	for i in range(number_of_simulations):
+		
+
+		if uncertainty=="yes":
+			binary_gm = (gm_data > 0.05*i).astype(np.uint8)
+			binary_wm = (wm_data > 0.05*i).astype(np.uint8)
+			parameters["gm"] = binary_gm
+			parameters["wm"] = binary_wm
+
+
+			fk_solver = Solver_FK_2c(parameters)
+			volume = fk_solver.solve()
+		
+			volume = volume['final_state']['P']
+			if mean is None:
+				mean = np.zeros_like(volume, dtype=np.float64)
+				M2 = np.zeros_like(volume, dtype=np.float64)
+
+			count, mean, M2 = update_stats(volume, count, mean, M2)
+		else:
+			fk_solver = Solver_FK_2c(parameters)
+			volume = fk_solver.solve()
+		
+    
 	#save results
-	tumor_path = './tumor_final.nii.gz'
-	nib.save(nib.Nifti1Image(result['final_state']['P'], affine), tumor_path)
-	#tumor = nib.Nifti1Image(result['final_state']['P'], affine) 
+	if uncertainty=="yes":
+		variance = finalize_variance(count, mean, M2)
+		tumor_path = './tumor_final_{}.nii.gz'.format(i)
+		nib.save(nib.Nifti1Image(volume, affine), tumor_path)
+
+		variance_path = './tumor_variance.nii.gz'
+		nib.save(nib.Nifti1Image(variance, affine), variance_path)
+		return tumor_path, variance_path
+	else:
+		tumor_path = './tumor_final_{}.nii.gz'.format(i)
+		nib.save(nib.Nifti1Image(volume['final_state']['P'], affine), tumor_path)
+		return tumor_path
+
+
 	
-	return tumor_path
+	
