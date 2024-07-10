@@ -6,6 +6,7 @@ import time
 import scipy.ndimage
 
 import copy
+import os
 from scipy.ndimage import zoom
 from solver import Solver_FK_2c 
 
@@ -50,6 +51,7 @@ def finalize_variance(count, mean, M2):
 
 
 def main(Diffusion_param, Proliferation_param, x_coord, y_coord, z_coord, uncertainty, **kwargs):
+	
 
     #################################### start here settings ####################################
 	# Create binary segmentation masks
@@ -105,7 +107,8 @@ def main(Diffusion_param, Proliferation_param, x_coord, y_coord, z_coord, uncert
 
 			fk_solver = Solver_FK_2c(parameters)
 			volume = fk_solver.solve()
-		
+			tumor_path = './tumor_{}.nii.gz'.format(i)
+			nib.save(nib.Nifti1Image(volume['final_state']['P'], affine), tumor_path)
 			volume = volume['final_state']['P']
 			if mean is None:
 				mean = np.zeros_like(volume, dtype=np.float64)
@@ -120,14 +123,14 @@ def main(Diffusion_param, Proliferation_param, x_coord, y_coord, z_coord, uncert
 	#save results
 	if uncertainty=="yes":
 		variance = finalize_variance(count, mean, M2)
-		tumor_path = './tumor_final_{}.nii.gz'.format(i)
+		tumor_path = './tumor_final.nii.gz'
 		nib.save(nib.Nifti1Image(volume, affine), tumor_path)
 
 		variance_path = './tumor_variance.nii.gz'
 		nib.save(nib.Nifti1Image(variance, affine), variance_path)
 		return tumor_path, variance_path
 	else:
-		tumor_path = './tumor_final_{}.nii.gz'.format(i)
+		tumor_path = './tumor_final.nii.gz'
 		nib.save(nib.Nifti1Image(volume['final_state']['P'], affine), tumor_path)
 		return tumor_path
 
