@@ -41,12 +41,12 @@ def aggregate_data(folder_path):
     return aggregated_data, affine
 
 def main(mean="yes", std="yes", median="yes", mad="yes", **kwargs):
-	print("1")
+	
 	folder_path = "./image_volumes/"
 	aggregated_data, affine = aggregate_data(folder_path)
-	print("2")
+	
 	mean_image, std_image, median_image, mad_image = compute_elementwise_statistics(aggregated_data)
-	print(mean_image.shape)
+
 	mean_path = "mean.nii.gz"
 	std_path = "std.nii.gz"
 	median_path = "median.nii.gz"
