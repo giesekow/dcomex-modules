@@ -32,6 +32,14 @@
       "type": "python",
       "group": null
     },
+    "UQ": {
+      "path": "UQ",
+      "environment": "tumor",
+      "display": "UQ",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },    
     "volume2mesh": {
       "path": "volume2mesh",
       "environment": "v2m",

@@ -1,0 +1,60 @@
+{
+  "inputs": {
+
+    "mean": {
+      "display": "Compute mean? (yes/no)",
+      "type": "scalar",
+      "subtype": "string",
+      "required": true,
+      "description": "Compute mean"
+    },
+
+    "std": {
+      "display": "Compute standard deviation? (yes/no)",
+      "type": "scalar",
+      "subtype": "string",
+      "required": true,
+      "description": "Compute standard deviation"
+    },
+
+    "median": {
+      "display": "Compute median? (yes/no)",
+      "type": "scalar",
+      "subtype": "string",
+      "required": true,
+      "description": "Compute median"
+    },
+
+    "mad": {
+      "display": "Compute median absolute deviation? (yes/no)",
+      "type": "scalar",
+      "subtype": "string",
+      "required": true,
+      "description": "Compute median"
+    }    
+
+    
+  },
+  "outputs": {
+    "mean": {
+      "type": "image",
+      "subtype": "nifti"
+    },
+    "std": {
+      "type": "image",
+      "subtype": "nifti"
+    },
+    "median": {
+      "type": "image",
+      "subtype": "nifti"
+    },
+    "mad": {
+      "type": "image",
+      "subtype": "nifti"
+    }
+  },
+  "kwargs": {},
+  "callback": "main",
+  "module": ".",
+  "python": ""
+}
