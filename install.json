@@ -24,6 +24,22 @@
       "type": "python",
       "group": null
     },
+    "tumor_growth": {
+      "path": "tumor_growth",
+      "environment": "tumor",
+      "display": "Tumor Growth Model",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },
+    "UQ": {
+      "path": "UQ",
+      "environment": "tumor",
+      "display": "UQ",
+      "viewer": false,
+      "type": "python",
+      "group": null
+    },    
     "volume2mesh": {
       "path": "volume2mesh",
       "environment": "v2m",
@@ -85,6 +101,10 @@
       "python_version": "3.8",
       "requirements": ["./volume2mesh/requirements.txt"],
       "description": ""
+    },
+    "tumor": {
+      "python_version": "3.8",
+      "requirements": ["./tumor_growth/requirements.txt"]
     }
   }
 }

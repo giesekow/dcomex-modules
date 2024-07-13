@@ -1,0 +1,65 @@
+{
+  "inputs": {
+
+    "Diffusion_param": {
+      "display": "Diffusion parameter",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Diffusion parameter"
+    },
+
+    "Proliferation_param": {
+      "display": "Proliferation parameter",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Proliferation parameter"
+    },
+
+    "x_coord": {
+      "display": "X coordinate",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "X coordinate"
+    },
+
+    "y_coord": {
+      "display": "Y coordinate",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Y coordinate"
+    },
+
+    "z_coord": {
+      "display": "Z coordinate",
+      "type": "scalar",
+      "required": true,
+      "subtype": "float",
+      "description": "Z coordinate"
+    },
+
+    "uncertainty": {
+      "display": "Include uncertainty? (yes/no)",
+      "type": "scalar",
+      "subtype": "string",
+      "required": true,
+      "description": "Uncertainty of geometry"
+    }
+    
+
+    
+  },
+  "outputs": {
+    "tumor": {
+      "type": "image",
+      "subtype": "nifti"
+    }
+  },
+  "kwargs": {},
+  "callback": "main",
+  "module": ".",
+  "python": ""
+}
